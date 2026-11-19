@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover maker</title>
+<meta name="description" content="Turn any photo and caption into multi-panel GTA-style cover art, offline in your browser, and export it as a PNG.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark">NC</span>
+      <span class="brand-name">Neon Coast <em>Cover Studio</em></span>
+    </div>
+    <p class="tagline">Your photo. Your caption. Poster art in three steps.</p>
+  </header>
+
+  <main id="workspace">
+    <section id="stageWrap" aria-label="Cover preview">
+      <canvas id="preview" width="880" height="880"></canvas>
+      <p id="panelHint">Click a panel to select it · drag to move its photo · scroll to zoom</p>
+      <p id="statusLine" role="status">Add a photo to start.</p>
+    </section>
+
+    <aside id="controls" aria-label="Cover controls">
+      <section class="panel" id="photoPanel">
+        <h2>1 · Photos</h2>
+        <div id="dropZone" tabindex="0" role="button" aria-label="Add photos">
+          <strong>Drop photos here</strong>
+          <span>or click to pick from your machine — they never leave it</span>
+        </div>
+        <input id="fileInput" type="file" accept="image/*" multiple hidden>
+        <div class="sample-row">
+          <button type="button" id="sampleBoulevard" class="chip">Sample · Boulevard</button>
+          <button type="button" id="samplePier" class="chip">Sample · Pier</button>
+        </div>
+        <div id="photoSlots"></div>
+        <label class="slider-label" for="zoomRange">Zoom selected panel</label>
+        <input id="zoomRange" type="range" min="1" max="3" step="0.05" value="1">
+      </section>
+
+      <section class="panel">
+        <h2>2 · Layout</h2>
+        <div id="layoutRow" class="chip-row"></div>
+      </section>
+
+      <section class="panel">
+        <h2>3 · Colour grade</h2>
+        <div id="gradeRow" class="swatch-row"></div>
+      </section>
+
+      <section class="panel">
+        <h2>4 · Words</h2>
+        <label class="field-label" for="titleInput">Cover title</label>
+        <input id="titleInput" type="text" value="Neon Coast" maxlength="24" autocomplete="off">
+        <label class="field-label" for="subtitleInput">Neon subtitle</label>
+        <input id="subtitleInput" type="text" value="chasing the last light" maxlength="48" autocomplete="off">
+        <label class="field-label" for="badgeInput">Badge ribbon</label>
+        <input id="badgeInput" type="text" value="NEON COAST · 2026" maxlength="32" autocomplete="off">
+        <div id="titleFillRow" class="chip-row"></div>
+      </section>
+
+      <section class="panel">
+        <h2>5 · Size &amp; finish</h2>
+        <div id="sizeRow" class="chip-row"></div>
+        <div class="toggle-row">
+          <label><input type="checkbox" data-toggle="grain" checked> Film grain</label>
+          <label><input type="checkbox" data-toggle="sun" checked> Synthwave sun</label>
+          <label><input type="checkbox" data-toggle="palms" checked> Palm silhouettes</label>
+        </div>
+      </section>
+
+      <section class="panel actions">
+        <button type="button" id="shuffleBtn" class="btn ghost">Shuffle look</button>
+        <button type="button" id="undoBtn" class="btn ghost" disabled>Undo</button>
+        <button type="button" id="redoBtn" class="btn ghost" disabled>Redo</button>
+        <button type="button" id="exportBtn" class="btn primary">Export PNG</button>
+        <p class="fineprint">Offline app — no uploads, no account, no watermark. Fonts Anton &amp; Pacifico ship under the SIL Open Font License.</p>
+      </section>
+    </aside>
+  </main>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
